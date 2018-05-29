@@ -7,7 +7,7 @@ message GCDRequest {
   uint64 b = 2;
 }
 
-message GCDResponse { 
+message GCDResponse {
   uint64 result = 1;
 }
 

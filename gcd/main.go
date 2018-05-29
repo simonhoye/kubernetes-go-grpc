@@ -1,8 +1,10 @@
 package main
+
 import (
 	"log"
 	"net"
-	"github.com/simonhoye/kubernetes-go-grpc/pd"
+
+	"github.com/simonhoye/kubernetes-go-grpc/pb"
 	context "golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -15,11 +17,13 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to listen: %v", err)
 	}
+
 	s := grpc.NewServer()
 	pb.RegisterGCDServiceServer(s, &server{})
 	reflection.Register(s)
+
 	if err := s.Serve(lis); err != nil {
-		log.Fatalf("Failed to server: %v", err)
+		log.Fatalf("Failed to serve: %v", err)
 	}
 }
 
